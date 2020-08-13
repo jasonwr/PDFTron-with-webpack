@@ -10,7 +10,7 @@ const App = () => (
       <nav>
         <ul>
           <li>
-            <Link to='/'>Web Viewer</Link>
+            <Link to='/'>Web Viewer (Multiple Docs Support)</Link>
           </li>
           <li>
             <Link to='/uploader'>File Uploader + Converter</Link>

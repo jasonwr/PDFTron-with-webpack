@@ -72,6 +72,13 @@ const ViewerAndUpdator = ({
     })
   }
 
+  const loadPDF = (buffer, fileName) => {
+    const currentBlob = getFileBlob({ buffer, type: 'application/pdf' })
+
+    loadDocumentInViewer(currentBlob, fileName)
+    forwardToParent(currentBlob, fileName)
+  }
+
   const convertImageToPDF = (buffer, fileName) => {
     const currentBlob = getFileBlob({ buffer, type: 'image/jpeg' })
 
@@ -151,6 +158,9 @@ const ViewerAndUpdator = ({
           case 'odt':
             convertImageToPDF(inputBuffer, fileName)
             break
+          case 'pdf':
+            loadPDF(inputBuffer, fileName)
+            break
           default:
             alert(`${fileExtension} files not handled yet`)
         }
@@ -170,7 +180,7 @@ const ViewerAndUpdator = ({
           onFileSelection={files => {
             onFileSelection(files)
           }}
-        ></DropArea>
+        />
       </div>
       <div
         style={{
@@ -182,7 +192,7 @@ const ViewerAndUpdator = ({
         }}
         id='docViewer'
         ref={viewer}
-      ></div>
+      />
     </div>
   )
 }
